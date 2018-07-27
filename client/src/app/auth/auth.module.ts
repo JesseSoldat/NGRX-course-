@@ -8,7 +8,7 @@ import { StoreModule } from "@ngrx/store";
 import { EffectsModule } from "@ngrx/effects";
 // custom ngrx
 import * as fromAuth from "./auth.reducer";
-
+import { AuthEffects } from "./auth.effects";
 // material module
 import { MatCardModule } from "@angular/material/card";
 import { MatInputModule } from "@angular/material";
@@ -25,6 +25,7 @@ import { AuthService } from "./auth.service";
     RouterModule.forChild([{ path: "", component: LoginComponent }]),
     // ngrx
     StoreModule.forFeature("auth", fromAuth.authReducer),
+    EffectsModule.forFeature([AuthEffects]),
     // material
     MatCardModule,
     MatInputModule,

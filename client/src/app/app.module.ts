@@ -28,7 +28,10 @@ import { environment } from "../environments/environment";
 // components
 import { AppComponent } from "./app.component";
 
-const routes: Routes = [{ path: "**", redirectTo: "/" }];
+const routes: Routes = [
+  { path: "courses", loadChildren: "./courses/courses.module#CoursesModule" },
+  { path: "**", redirectTo: "/" }
+];
 
 @NgModule({
   declarations: [AppComponent],
@@ -41,6 +44,7 @@ const routes: Routes = [{ path: "**", redirectTo: "/" }];
     // ngrx
     StoreModule.forRoot(reducers, { metaReducers }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
+    EffectsModule.forRoot([]),
     // material modules
     MatMenuModule,
     MatIconModule,
