@@ -29,6 +29,7 @@ import { CourseResolver } from "./services/course.resolver";
 // components
 import { HomeComponent } from "./home/home.component";
 import { CourseComponent } from "./course/course.component";
+import { CoursesCardListComponent } from "./courses-card-list/courses-card-list.component";
 
 export const coursesRoutes: Routes = [
   {
@@ -66,7 +67,7 @@ export const coursesRoutes: Routes = [
     MatSelectModule,
     MatDatepickerModule
   ],
-  declarations: [HomeComponent, CourseComponent],
+  declarations: [HomeComponent, CourseComponent, CoursesCardListComponent],
   providers: [CoursesService, CourseResolver]
 })
 export class CoursesModule {}

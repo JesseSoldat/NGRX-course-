@@ -6,6 +6,11 @@ import { Course } from "../../model/course.model";
 // ngrx
 import { AppState } from "../../reducers";
 import { select, Store } from "@ngrx/store";
+import {
+  selectAdvancedCourses,
+  selectBeginnerCourses,
+  selectPromoTotal
+} from "../course.selectors";
 import { AllCoursesRequested } from "../course.actions";
 
 @Component({
@@ -24,5 +29,11 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.store.dispatch(new AllCoursesRequested());
+
+    this.beginnerCourses$ = this.store.pipe(select(selectBeginnerCourses));
+
+    this.advancedCourses$ = this.store.pipe(select(selectAdvancedCourses));
+
+    this.promoTotal$ = this.store.pipe(select(selectPromoTotal));
   }
 }
