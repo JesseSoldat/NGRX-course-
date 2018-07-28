@@ -2,9 +2,6 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { ReactiveFormsModule } from "@angular/forms";
 import { RouterModule, Routes } from "@angular/router";
-// ngrx
-import { StoreModule } from "@ngrx/store";
-import { EffectsModule } from "@ngrx/effects";
 // material
 import {
   MatDatepickerModule,
@@ -18,17 +15,32 @@ import {
   MatTableModule
 } from "@angular/material";
 import { MatTabsModule } from "@angular/material/tabs";
-import { MatMenuModule } from "@angular/material/menu";
 import { MatCardModule } from "@angular/material/card";
 import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
+// ngrx
+import { StoreModule } from "@ngrx/store";
+import { EffectsModule } from "@ngrx/effects";
+import { coursesReducer } from "./course.reducers";
+import { CourseEffects } from "./course.effects";
+// services
+import { CoursesService } from "./services/courses.service";
+import { CourseResolver } from "./services/course.resolver";
 // components
 import { HomeComponent } from "./home/home.component";
+import { CourseComponent } from "./course/course.component";
 
 export const coursesRoutes: Routes = [
   {
     path: "",
     component: HomeComponent
+  },
+  {
+    path: ":id",
+    component: CourseComponent,
+    resolve: {
+      course: CourseResolver
+    }
   }
 ];
 
@@ -37,6 +49,9 @@ export const coursesRoutes: Routes = [
     CommonModule,
     ReactiveFormsModule,
     RouterModule.forChild(coursesRoutes),
+    StoreModule.forFeature("courses", coursesReducer),
+    EffectsModule.forFeature([CourseEffects]),
+    // material
     MatButtonModule,
     MatIconModule,
     MatCardModule,
@@ -51,6 +66,7 @@ export const coursesRoutes: Routes = [
     MatSelectModule,
     MatDatepickerModule
   ],
-  declarations: [HomeComponent]
+  declarations: [HomeComponent, CourseComponent],
+  providers: [CoursesService, CourseResolver]
 })
 export class CoursesModule {}
