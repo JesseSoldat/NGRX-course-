@@ -45,6 +45,7 @@ const routes: Routes = [
     StoreModule.forRoot(reducers, { metaReducers }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     EffectsModule.forRoot([]),
+    StoreRouterConnectingModule.forRoot({ stateKey: "router" }),
     // material modules
     MatMenuModule,
     MatIconModule,

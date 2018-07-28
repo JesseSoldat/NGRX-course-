@@ -8,6 +8,7 @@ import { AppState } from "../../reducers";
 import { select, Store } from "@ngrx/store";
 import {
   selectAdvancedCourses,
+  selectAllCourses,
   selectBeginnerCourses,
   selectPromoTotal
 } from "../course.selectors";

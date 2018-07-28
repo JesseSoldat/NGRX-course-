@@ -15,7 +15,7 @@ export class CustomSerializer implements RouterStateSerializer<RouterStateUrl> {
   serialize(routerState: RouterStateSnapshot): RouterStateUrl {
     let route = routerState.root;
 
-    console.log(routerState);
+    // console.log(routerState);
 
     while (route.firstChild) {
       route = route.firstChild;

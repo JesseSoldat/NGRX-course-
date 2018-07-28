@@ -26,5 +26,14 @@ export class AuthEffects {
     })
   );
 
+  @Effect()
+  init$ = defer(() => {
+    const userData = localStorage.getItem("user");
+    if (userData) {
+      return of(new Login({ user: JSON.parse(userData) }));
+    }
+    return of(new Logout());
+  });
+
   constructor(private action$: Actions, private router: Router) {}
 }
