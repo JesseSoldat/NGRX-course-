@@ -23,6 +23,7 @@ export const coursesReducer = (
       return adapter.addOne(action.payload.course, state);
 
     case CourseActionTypes.AllCoursesLoaded:
+      // console.log("ALL COURSES LOADED", action.payload.courses);
       return adapter.addAll(action.payload.courses, {
         ...state,
         allCoursesLoaded: true

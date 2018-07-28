@@ -28,11 +28,15 @@ import { merge, fromEvent } from "rxjs";
   styleUrls: ["./course.component.scss"]
 })
 export class CourseComponent implements OnInit, AfterViewInit {
+  course: Course;
+
   constructor(
     private route: ActivatedRoute,
     private coursesService: CoursesService
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.course = this.route.snapshot.data["course"];
+  }
   ngAfterViewInit() {}
 }
